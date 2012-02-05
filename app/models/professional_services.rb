@@ -1,0 +1,2 @@
+class ProfessionalServices < Profile
+end

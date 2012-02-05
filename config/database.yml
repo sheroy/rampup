@@ -1,0 +1,56 @@
+development:
+  adapter:  mysql2
+  database: rampup_development
+  username: root
+  password: root
+  host: localhost
+  pool: 5
+  timeout: 5000
+
+test: &test
+  adapter:  mysql2
+  database: rampup_test
+  username: root
+  password: root
+  host: localhost
+  pool: 5
+  timeout: 5000
+
+qa:
+  adapter:  mysql
+  database: rampup_qa
+  username: root
+  host: rampupqa01.thoughtworks.com
+  timeout: 5000
+
+production:
+  adapter:  mysql2
+  database: rampup_development
+  username: root
+  password: root
+  host: localhost
+  timeout: 5000
+
+staging:
+  adapter:  mysql
+  database: rampup_staging
+  username: root
+  host: localhost
+  timeout: 5000
+
+uat:
+  adapter: sqlserver
+  mode: ODBC
+  dsn: RampUpUatServer
+  username: RampupServer
+  password: RampupServer
+
+server:
+  adapter: sqlserver
+  mode: ODBC
+  dsn: RampUpServer
+  username: RampupServer
+  password: RampupServer
+
+cucumber:
+  <<: *test

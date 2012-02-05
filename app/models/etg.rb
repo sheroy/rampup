@@ -1,0 +1,2 @@
+class Etg<Profile
+end

@@ -1,0 +1,7 @@
+<%title "Results"%>
+<%if @results.length > 0%>
+<%=render :partial=>'partials/search/search_results', :locals=>{:results=>@results}%>
+<%=link_to "Export Search Results to Excel", {:action=>:location_role_wise_resource_path_export, :location=>params[:location], :level=>params[:level],:level_type=>params[:level_type]},:class=>'button-link'%>
+<%else%>
+<h4>No Results found.</h4>
+<%end%>

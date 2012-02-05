@@ -1,0 +1,39 @@
+<div class="projects_panel">
+	<div class="left_panel">
+		<h3>Projects Won</h3>
+		<div id="projects_won">
+			<%=render :partial=>'partials/home/display_projects',:locals=>{:projects=>@won_projects}%>
+		</div>
+		<br/>
+		<%= link_to "More...", projects_list_path("won")%>
+	</div>
+
+	<div class="right_panel">
+		<div id="pursuing_projects">
+			<h3>Pursuing Projects</h3>
+			<%=render :partial=>'partials/home/display_projects',:locals=>{:projects=>@pursuing_projects}%>
+		</div>
+		<br />
+		<%= link_to "More...", projects_list_path("pursuing")%>
+	</div>
+	<div class="clear"></div>
+</div>
+<div class="projects_panel">
+	<div class="left_panel">
+		<div id="qualifying_projects">
+			<h3>Qualifying Projects</h3>
+			<%=render :partial=>'partials/home/display_projects',:locals=>{:projects=>@qualifying_projects}%>
+		</div>
+		<br/>
+		<%= link_to "More...", projects_list_path("qualifying")%>
+	</div>
+	<div class="right_panel">
+		<div id="proposing_projects">
+			<h3>Projects in Proposal</h3>
+			<%=render :partial=>'partials/home/display_projects',:locals=>{:projects=>@proposing_projects}%>
+		</div>
+		<br/>
+		<%= link_to "More...", projects_list_path("proposing")%>
+	</div>
+	<div class="clear"></div>
+</div>

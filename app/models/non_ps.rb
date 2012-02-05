@@ -1,0 +1,2 @@
+class NonPs < Profile
+end

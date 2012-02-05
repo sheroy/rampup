@@ -1,0 +1,9 @@
+<%title "Role and Qualification Breakdown"%>
+
+<div class="vertical-space">
+  <%=render :partial=>'partials/admin/role_based_breakdown',:locals=>{:role_breakdown=>@role_breakdown}%>
+</div>
+<div class="vertical-space">
+	<%=render :partial=>'partials/admin/qualification_based_breakdown',:locals=>{:qualification_breakdown=>@qualification_breakdown}%>
+</div>
+
