@@ -628,7 +628,7 @@ describe Profile do
       report_data[:data][@profile.id]["Employee ID"].should == "98989"
       report_data[:data][@profile.id]["First Name"].should == "Mohan"
       report_data[:data][@profile.id]["Last Name"].should == "S"
-      report_data[:data][@profile.id]["Home Office"].should == "Chennai"
+      report_data[:data][@profile.id]["Home Office"].should == "Bangalore 1"
       report_data[:data][@profile.id].size.should == 4
 
     end
