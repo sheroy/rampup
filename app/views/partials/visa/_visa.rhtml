@@ -1,0 +1,4 @@
+<%unless @profile.passport.nil?%>
+  <h3>Visa Information</h3><br/>
+  <%=render :partial=>'partials/visa/existing_visas'%>
+<%end%>

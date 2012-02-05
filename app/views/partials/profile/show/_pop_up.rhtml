@@ -1,0 +1,9 @@
+<div id="pop_up_overlay">
+</div>
+<div class="pop_up_content" id="pop_up_content_<%=uid%>">
+	<div class="pop_up_header">
+		<span class="header-title"><%=title%></span>
+        <%=link_to_function  image_tag('close.png'),"close_dialog(#{uid});return false"%>
+	</div>
+	<%= yield%>
+</div>

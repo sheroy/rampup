@@ -1,0 +1,35 @@
+<h3>Address Details:</h3>
+<table id="address_details">
+  <tr>
+    <td><h4>Permanent Address:</h4></td>
+    <td><h4>Current Address:</h4></td>
+  </tr>
+  <tr>
+    <td><%=profile.permanent_address_line_1 %></td>
+    <td><%=h profile.temporary_address_line1 %></td>
+  </tr>
+  <tr>
+    <td><%=profile.permanent_address_line2 %></td>
+    <td><%=h profile.temporary_address_line2 %></td>
+  </tr>
+  <tr>
+    <td><%=profile.permanent_address_line3 %></td>
+    <td><%=h profile.temporary_address_line3 %></td>
+  </tr>
+  <tr>
+    <td><%=profile.permanent_city %></td>
+    <td><%=h profile.temporary_city %></td>
+  </tr>
+  <tr>
+    <td><%=profile.permanent_state %></td>
+    <td><%=h profile.temporary_state %></td>
+  </tr>
+  <tr>
+    <td><%=profile.permanent_pincode %></td>
+    <td><%=h profile.temporary_pincode %></td>
+  </tr>
+  <tr>
+    <td>Residence Phone:<%=h display_if_not_nil(profile.permanent_phone_number)%></td>
+    <td>Mobile Phone:<%=h display_if_not_nil(profile.temporary_phone_number) %></td>
+  </tr>
+</table>

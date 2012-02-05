@@ -1,0 +1,39 @@
+<% total_sum = 0 %>
+<table>
+	<tr>
+		<th>Skills</th>
+		<th>Bangalore</th>
+		<th>Chennai</th>
+		<th>Pune</th>
+		<th>Delhi-Gurgoan</th>
+		<th>Total</th>
+	</tr>
+
+	<%SKILL_SET.each_with_index do |row,i|%>
+		<% total_sum = 0 %>
+	<tr>
+		<td><%=SKILL_SET[i]%></td>
+		<%Location.all.collect {|location|location.name}.each do |location|%>
+		<td><%=link_to @skillset_breakdown[location + "_" + SKILL_SET[i]].to_i,skillset_distribution_path(:location=>location,:skills=>get_skills_in_format(SKILL_SET[i]),:type=>"single")%>
+		</td>
+		<% total_sum += (@skillset_breakdown[location + "_" + SKILL_SET[i]]).to_i %>
+	   <%end%>
+		<% @skillset_pie_breakdown << total_sum %>
+                <td><%=link_to total_sum, skillset_distribution_path(:location=>'*',:skills=>get_skills_in_format(SKILL_SET[i]),:type=>"single")%></td>
+	</tr>
+	<%end%>
+
+    <%COMBINED_SKILL_SET.each_with_index do |row,i|%>
+		<% total_sum = 0 %>
+	<tr>
+		<td><%=COMBINED_SKILL_SET[i]%></td>
+		<%Location.all.collect {|location|location.name}.each do |location|%>
+		<% count = eval("@" + "#{get_skillset_string(COMBINED_SKILL_SET[i])}" + "_skillset_breakdown[location]") %>
+		<td><%= link_to count.to_i, skillset_distribution_path(:location=>location,:skills=>get_skills_in_format(COMBINED_SKILL_SET[i]),:type=>"combined")%></td>
+		<% total_sum += count.to_i %>
+	   <%end%>
+                <% @skillset_pie_breakdown << total_sum %>
+	  <td><%=link_to total_sum, skillset_distribution_path(:location=>'*',:skills=>get_skills_in_format(COMBINED_SKILL_SET[i]), :type=>"combined")%></td>
+	</tr>
+	<%end%>
+</table>

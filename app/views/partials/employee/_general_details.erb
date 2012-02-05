@@ -1,0 +1,73 @@
+<h3>Personal Details : <%=h @user_profile.common_name %></h3> <br />
+<table>
+	<tr>
+		<td>
+			Employee Id
+		</td>
+		<td>
+			<%=h @user_profile.employee_id%><br>
+		</td>
+
+	</tr>
+    <tr>
+		<td>
+			Date of Birth 
+		</td>
+		<td>
+			<%=h custom_date_with_month(@user_profile.date_of_birth) %>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			Role <span style="color:red">*</span>
+		</td>
+		<td>
+			<%=f.select :title,Title.all.collect {|title| title.name.strip}.sort,:include_blank=>"--Select--"%>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<%= f.label :gender %> 
+		</td>
+		<td>
+			<%=h @user_profile.gender %>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<%= f.label :marital_status %> <span style="color:red">*</span></td>
+		<td>
+			<%= f.radio_button(:marital_status,"Single",:checked=>true)%> Single
+			<%= f.radio_button(:marital_status,"Married")%> Married
+            <%= f.radio_button(:marital_status,"Others")%> Others
+
+		</td>
+	</tr>
+
+	<tr>
+		<td>Email Id  </td>
+		<td><%=h @user_profile.email_id%>@thoughtworks.com</td>
+	</tr>
+    <tr>
+      <td>Personal Email Id:<span style="color:red">*</span> </td>
+      <td><%=f.text_field :personal_email_id%>(eg:aaa@gmail.com)</td>
+    </tr>
+	<tr>
+		<td>Father Name </td>
+		<td><%=h @user_profile.guardian_name %></td>
+	</tr>
+	<tr>
+		<td>Date Of Joining </td>
+		<td><%=h custom_date_with_month(@user_profile.date_of_joining) %></td>
+	</tr>
+	<tr>
+		<td>Experience Prior to TW </td>
+		<td><%=h display_months_in_years(@user_profile.years_of_experience)%></td>
+    </tr>
+    <tr>
+		<td>Home Office </td>
+		<td><%=h Location.get_location_name_by_id(@user_profile.location_id) %></td>
+	</tr>
+</table>
+
+<br />

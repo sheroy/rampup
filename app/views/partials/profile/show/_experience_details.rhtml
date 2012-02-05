@@ -1,0 +1,19 @@
+<h3>Experience Details:</h3> <br/>
+<%if profile.experiences.size > 0%>
+<table>
+	<tr>
+		<th>Technology</th>
+		<th>Last Used</th>
+		<th>Duration</th>
+	</tr>
+	<%profile.experiences.each_with_index do |experience,i|%>
+	<tr>
+		<td><%=h experience.technology%></td>
+		<td><%=h custom_date_with_month_and_year(experience.last_used)%></td>
+		<td><%=h display_months_in_years(experience.duration)%></td>
+	</tr>
+	<%end%>
+</table>
+<%else%>
+No Experience Details<br/>
+<%end%>

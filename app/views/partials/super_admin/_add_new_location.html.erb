@@ -1,0 +1,7 @@
+<h4 class="locations_header">Locations</h4>
+<ul class="category_list">
+  <% @locations = Location.all.collect {|locations|locations.name}%>
+  <% @locations.each do |locations| %>
+     <li><%= locations %></li>
+  <% end %>
+</ul>

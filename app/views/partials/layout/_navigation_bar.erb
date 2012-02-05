@@ -1,0 +1,5 @@
+<% if can? :manage, :all %>
+	<%=render :partial=>'partials/nav_bar/admin'%>
+<% elsif can? :read, Profile %>
+    <%=render :partial=>'partials/nav_bar/employee'%>
+<% end %>                                 

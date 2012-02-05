@@ -1,0 +1,14 @@
+<%title "Export Master Data"%>
+<div>
+<div class="label_text float-left clear_left"> 
+<h4>Export Employee Master Data to Excel</h4>
+</div>
+<div id="options" class="float-left">
+	<%= form_tag('profiles_exporter') do %>
+
+	<%=select_tag "option",  ["<option>Complete</option>","<option>Incomplete</option>","<option>Both Complete & Incomplete</option>","<option>Ex-TWers</option>"].join.html_safe%>
+	<%=submit_tag "Proceed"%>
+	
+	<%end%>
+</div>
+</div>

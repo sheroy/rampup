@@ -1,0 +1,21 @@
+<table id="sortable">
+  <thead>
+  <tr>
+    <%["","PSID","Name","Role","Location","Date of Joining"].each do |header|%>
+        <th><%=header%></th>
+    <%end%>
+  </tr>
+  </thead>
+  <tbody>
+  <% profiles.each do |profile| %>
+      <tr>
+        <td><%=radio_button_tag(:document,value=profile.id,checked=false)%></td>
+        <td><%= link_to profile.employee_id, show_profile_path(:id=> profile.id)%></td>
+        <td><%= profile.common_name %></td>
+        <td><%= profile.title %></td>
+        <td class="location_name"><%= Location.get_location_name_by_id(profile.location_id) %></td>
+        <td id="dates"><%= custom_date_with_month(profile.date_of_joining) %></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>

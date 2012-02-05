@@ -1,0 +1,19 @@
+<h3>Access Card Details:</h3>
+<table id="access_card_details">
+	<tr>
+		<td>Access Card Number:</td>
+		<td><%=h display_if_not_nil(profile.access_card_number) %></td>
+	</tr>
+	<tr>
+		<td>Blood Group:</td>
+		<td><%=h display_if_not_nil(profile.blood_group)%></td>
+	</tr>
+	<tr>
+		<td>Emergency Contact Person:</td>
+		<td><%=h display_if_not_nil(profile.emergency_contact_person)%></td>
+	</tr>
+	<tr>
+		<td>Emergency Contact Number:</td>
+		<td><%=h display_if_not_nil(profile.emergency_contact_number)%></td>
+	</tr>
+</table>

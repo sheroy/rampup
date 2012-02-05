@@ -1,0 +1,5 @@
+<% if target %>
+	<% if target.errors[field].any? %>  
+		<%= "#{field.to_s.titleize} #{target.errors[field][0]}" %>
+	<% end %>
+<% end %>

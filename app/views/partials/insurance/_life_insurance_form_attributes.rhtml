@@ -1,0 +1,14 @@
+<table>
+<tr>
+	<td>Beneficiary Name:</td>
+	<td><%=f.text_field :name%></td>
+</tr>
+<tr>
+	<td>Relationship with Employee:</td>
+	<td><%=f.select :relationship, Relation.all.collect {|relation| relation.name}.sort, {:include_blank=>"--select--"}%></td>
+</tr>
+<tr>
+	<td>Percentage:</td>
+	<td><%=f.text_field :percentage%></td>
+</tr>
+</table>

@@ -1,0 +1,3 @@
+<%form_for visa ,:url=>{:controller=>'visa',:action=>'save', :id=>@profile.id} do |f|%>
+<%=render :partial=>'partials/visa/visa_information',:locals=>{:visa=>visa,:f=>f}%>
+<%end%>

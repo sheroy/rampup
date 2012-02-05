@@ -1,0 +1,52 @@
+
+<table class="stuff">
+  <tr>
+    <td><h4><pre>Current Address</pre></h4></td>
+    <td></td>
+    <td><h4><pre>Permanent Address</pre></h4></td>
+    <td><h4>
+      <input id="address_chk" type="checkbox" name="address_option" value="copy" onClick="copy_address()">
+      <label for="address_chk">Use Current Address</label>
+    </h4></td>
+  </tr>
+  <tr>
+    <td>Address<span style="color:red">*</span></td>
+    <td>
+      <%= f.text_field :temporary_address_line1 ,:onkeyup => "copy_address();return false;"%><br/>
+      <%= f.text_field :temporary_address_line2 ,:onkeyup => "copy_address();return false;"%><br/>
+      <%= f.text_field :temporary_address_line3 ,:onkeyup => "copy_address();return false;"%><br/>
+    </td>
+    <td>
+    Address<span style="color:red">*</span></td>
+    <td>
+      <%= f.text_field :permanent_address_line_1 %><br/>
+      <%= f.text_field :permanent_address_line2 %><br/>
+      <%= f.text_field :permanent_address_line3 %><br/>
+    </td>
+  </tr>
+  <tr>
+    <td>City<span style="color:red">*</span></td>
+    <td><%= f.text_field :temporary_city ,:onkeyup => "copy_address();return false;"%></td>
+    <td>City<span style="color:red">*</span></td>
+    <td> <%= f.text_field :permanent_city %></td>
+  </tr>
+  <tr>
+    <td>State<span style="color:red">*</span></td>
+    <td><%= f.select :temporary_state,State.all.collect {|state| state.name}.sort, {:include_blank => "--Select--"},{:onchange=> "copy_address();return false;"} %></td>
+    <td>State<span style="color:red">*</span></td>
+    <td><%= f.select :permanent_state, State.all.collect {|state| state.name}.sort,:include_blank => "--Select--" %></td>
+  </tr>
+  <tr>
+    <td>Pincode	<span style="color:red">*</span></td>
+    <td><%= f.text_field :temporary_pincode,:onkeyup => "copy_address();return false;" %></td>
+    <td>Pincode	<span style="color:red">*</span></td>
+    <td><%= f.text_field :permanent_pincode %></td>
+  </tr>
+  <tr>
+    <td>Mobile Phone:</td>
+    <td><%=f.text_field :temporary_phone_number,:onkeyup => "validate_phone_number(this);"%></td>
+    <td>Residence Phone:</td>
+    <td><%=f.text_field :permanent_phone_number,:onkeyup => "validate_phone_number(this);"%></td>
+  </tr>
+</table>
+

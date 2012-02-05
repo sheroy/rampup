@@ -1,0 +1,11 @@
+<div>
+<div class="label_text float-left clear_left"> 
+<h4>Export Birthday Babies</h4>
+</div>
+<div id="options" class="float-left">
+	<%= form_tag('birthday_babies_exporter') do %>
+	<%=	select_month(Date.today)%>
+	<%=submit_tag "Generate"%>
+	<%end%>
+</div>
+</div>

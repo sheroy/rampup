@@ -1,0 +1,4 @@
+<%= render :partial=>'partials/profile/show/general_details', :locals=>{:profile=>user_profile} %>
+<%= render :partial=>'partials/profile/show/address_details', :locals=>{:profile=>user_profile} %>
+<%= render :partial=>'partials/profile/show/access_card_details', :locals=>{:profile=>user_profile} %>
+<%= link_to 'Edit', {:controller=>'employee', :action=>'edit'}, :class=>"submit-button-link" %>

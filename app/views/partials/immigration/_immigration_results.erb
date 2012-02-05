@@ -1,0 +1,42 @@
+<table id="sortable">
+	<thead>
+		<tr>
+			<th>Employee ID</th>
+			<th>Name</th>
+			<th>Role</th>
+			<th>Location</th>
+			<th>Passport No</th>
+			<th>Passport-Expiry Date</th>
+            <th>Visa Category</th>
+            <th>Visa-Expiry Date</th>
+		</tr>
+	</thead>
+	<tbody>
+		<%@profiles.each do |profile|%>
+		<tr>
+			<%if can? :manage, :all %>
+			<td><%=link_to profile.employee_id, visa_path(profile.id, :search=>true)%></td>
+			<%else%>
+			<td><%=link_to profile.employee_id, show_passport_path(profile.id)%></td>
+			<%end%>
+			<td><%=profile.common_name%></td>
+			<td><%=profile.title%></td>
+			<td><%= Location.get_location_name_by_id(profile.location_id) %></td>
+			<%unless profile.passport_number.nil?%>
+			<td><%=display_if_not_nil(profile.passport_number)%></td>
+			<td><%=custom_date_with_month(profile.passport_expiry.to_date) unless profile.passport_expiry.nil?%></td>
+			<%else%>
+			<td>-Not-Available--</td>
+			<td>-Not-Available--</td>
+			<%end%>
+            <%unless profile.visa_category.nil?%>
+			<td><%=display_if_not_nil(profile.visa_category)%></td>
+			<td><%=custom_date_with_month(profile.visa_expiry.to_date) unless profile.visa_expiry.nil?%></td>
+			<%else%>
+			<td>-Not-Available--</td>
+			<td>-Not-Available--</td>
+			<%end%>
+		</tr>
+		<%end%>
+	</tbody>
+</table>

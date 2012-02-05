@@ -1,0 +1,28 @@
+<script type="text/javascript">
+   autoCompleteDropDownOptions = <%= qualification_autoComplete_sources %>
+</script>
+<table>
+	<tr>
+		<td>Category:</td>
+		<td >
+			<%=f.select :category, Degree.all.map(&:category).uniq.compact.sort,{:include_blank=>"--select--"} %></td>
+	</tr>
+	<tr>
+		<td>Degree:</td>
+			<td><%=f.text_field :degree, :class => "autoCompleteField" %></td>
+    	</tr>
+	<tr>
+		<td>Branch:</td>
+		<td><%=f.text_field :branch, :class => "autoCompleteField" %></td>
+	</tr>
+	<tr>
+		<td>University:</td>
+		<td><%=f.text_field :college, :class => "autoCompleteField"  %></td>
+
+	</tr>
+	<tr>
+		<td>Year of Graduation:</td>
+		<td><%=select :qualification, :graduation_year, (1970..Date.today.year).collect{|year|year}.reverse %></td>
+	</tr>
+
+</table>

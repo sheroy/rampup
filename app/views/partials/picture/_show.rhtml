@@ -1,0 +1,5 @@
+<% if !@profile.profile_picture.nil? %>
+    <%= image_tag(@profile.profile_picture.photo.url) %>
+<% else %>
+    <%= image_tag("/pictures/default_image.jpg") %>
+<% end %>

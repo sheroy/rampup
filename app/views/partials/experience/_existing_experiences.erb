@@ -1,0 +1,25 @@
+<h3>Existing Experience</h3>
+<%if profile.experiences.size > 0 %>
+<table>
+	<tr> 
+		<th>Technology</th>
+		<th>Last Used</th>
+		<th>Duration</th>
+	</tr>
+	<%profile.experiences.each do |experience|%>
+	<tr>
+		<td><%=experience.technology%></td>
+		<td><%=custom_date_with_month_and_year(experience.last_used)%></td>
+		<td><%=display_months_in_years(experience.duration)%></td>
+		<td><%=link_to "Edit", {:controller=>'experience', :action=>'edit', 
+			:id=>experience.id},:class=>'button-link' %>
+			<%=link_to "Delete", {:action=>'delete', :id=>experience.id}, 
+			:onclick=>'return confirm("Are you sure you want to delete the experience?")', :class=>'button-link'%>
+		</td>
+	</tr>
+	<%end%>
+</table>
+<%else%>    
+<div id="no-data">No Experiences Yet</div>     
+<br/>
+<%end%>

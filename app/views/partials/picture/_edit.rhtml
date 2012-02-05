@@ -1,0 +1,7 @@
+<% if !@profile.profile_picture.nil? %>
+    <%= render :partial => 'partials/picture/update', :locals=>{:profile => @profile, :image_url => @profile.profile_picture.photo.url,
+               :button_label => "Change Photo", :method_name => "change_photo"} %>
+<% else %>
+    <%= render :partial => 'partials/picture/update', :locals=>{:profile => @profile, :image_url => "/pictures/default_image.jpg",
+               :button_label => "Upload Photo", :method_name => "upload_photo"} %>
+<% end %>

@@ -1,0 +1,15 @@
+	<%form_tag({:action=>'save_last_day', :id=>params[:id]},{:onSubmit=>"return validate_dialog();"}) do%>
+	<div class="clearfix dialog-content">
+	<div class="pop_up_caption">Enter The Date Of Exit:</div>
+	<div class="pop_up_combo_box">
+	<%=date_select :profile, :last_day, :start_year=>Time.now.year, 
+	:end_year => Time.now.year-70,:include_blank=>true,:order => [:day, :month, :year] %>
+	</div>
+	<span class="error">Enter valid date</span>
+	</div>
+	<div class="center_button">
+	<%=submit_tag 'Save'%>
+	<input type="button" value="Cancel" class="cancel" onclick="close_dialog(0);"/>
+	</div>
+	<%end%>
+  

@@ -1,0 +1,20 @@
+
+<h3>Life Insurance Details:</h3><br/>
+<% if @profile.lives.size > 0%>
+<table>
+	<tr>
+		<th>Name</th>
+		<th>Relationship with Employee</th>
+		<th>Percentage</th>
+	</tr>
+	<%@profile.lives.each do |dependent|%>
+	<tr>
+		<td><%=dependent.name%></td>
+		<td><%=dependent.relationship%></td>
+		<td><%=dependent.percentage%></td>
+	</tr>
+	<%end%>
+</table>
+<%else%>
+ No Details Yet<br/>
+<%end%>

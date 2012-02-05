@@ -1,0 +1,19 @@
+<h3>Financial Details:</h3>
+<table>
+  <tr>
+    <td><h4>Account Number:</h4></td>
+  	<td><%= display_if_not_nil(profile.account_no)%></td>
+  </tr>
+  <tr>
+    <td><h4>PAN Number:</h4></td>
+  	<td><%= display_if_not_nil(profile.pan_no)%></td>
+  </tr>
+  <tr>
+	<td><h4>EPF Number:</h4></td>
+	<%if profile.epf_no.nil?%>
+	<td>--Not Set--</td>
+	<%else%>
+	<td>KN/BN/35147/<%= profile.epf_no%></td>
+	<%end%>
+  </tr>
+</table>

@@ -1,0 +1,28 @@
+<h3>Existing Qualifications</h3>
+<%if @profile.qualifications.size > 0 %>
+<table>
+  <tr>
+	<th><h3>Category</h3></th>
+    <th><h3>Degree</h3></th>
+    <th><h3>Branch</h3></th>
+    <th><h3>University</h3></th>
+    <th><h3>Graduation Year</h3></th>
+  </tr>
+	<%@profile.qualifications.each do |qualification|%>
+	<tr>
+		<td><%=qualification.category%></td>
+		<td><%=qualification.degree%></td>
+		<td><%=qualification.branch%></td>
+		<td><%=qualification.college%></td>
+		<td><%=qualification.graduation_year%></td>
+		<td>
+		<%=link_to "Edit", {:action=>'edit', :id=>qualification.id}, :class=>'button-link'%>
+		<%=link_to "Delete", {:action=>'delete', :id=>qualification.id}, :class=>'button-link',
+		:onclick=>'return confirm("Are you sure you want to delete the qualification?")'%></td>
+		</tr>
+		<%end%>
+</table>
+<%else%>
+	<div id="no-data">No Qualifications Yet</div>
+	<br />
+<%end%>

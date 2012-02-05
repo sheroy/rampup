@@ -1,0 +1,61 @@
+<div>
+
+<div id="resources">
+	<div class="template-left">
+		<h3>General Details</h3>
+		<%unless profile.nil?%>
+		<table >
+			<tr>
+				<td>Location:</td>
+				<td><%=@beach_ball_resource_info.location.Name%></td>
+			</tr>
+			<tr>
+				<td>Date Of Joining:</td>
+				<td><%=custom_date_with_month(display_if_not_nil(profile.date_of_joining))%></td>
+			</tr>
+			<tr>
+				<td>Experience Prior to TW:</td>
+				<td><%=display_months_in_years(profile.years_of_experience)%></td>
+			</tr>
+			<tr>
+				<td>Total Experience:</td>
+				<td><%=display_months_in_years(resource.total_experience_in_months)%></td>
+			</tr>
+			</table>
+			<%else%>
+			<div>No Experience Details Entered Yet.</div>
+			<%end%>
+	</div>
+	<div class="template-right">
+		<h3>Experience Details</h3>
+			<%if !experiences.nil? && experiences.length!=0%>
+			<table>
+				<tr>
+				<th>Skill</th>
+				<th>Last Used</th>
+				<th>Duration</th>
+			</tr>
+			<%experiences.each do |experience|%>
+			<tr>
+				<td><%=experience.technology%></td>
+				<td><%=custom_date_with_month(experience.last_used)%></td>
+				<td><%=(experience.duration)/12%> years <%=(experience.duration)%12%> months</td>
+			</tr>
+			</table>
+			<%end%>
+			<%else%>
+			<div>No Experience Details found.</div>
+			<%end%>
+	</div>
+</div>
+<div class="clear"/>
+<%if !profile.nil? && profile.visas.length!=0%>
+<h4>Visa Details</h4>
+<%=render :partial=>'partials/visa/existing_visas'%>
+<%end%>
+<%if params[:search].present?%>
+<a href="javascript:history.go(-1)" class="button-link">Back to Search Results</a>
+<%else%>
+<%=link_to 'Cancel', home_path, :class=>'button-link'%>
+<%end%>
+</div>

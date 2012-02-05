@@ -1,0 +1,5 @@
+<%form_for medical,:url=>{:controller=>'insurance',:action=>'update_medical_insurance',:profile_id=>profile.id,:id=>medical.id} do |f|%>
+  <%=render :partial=>'partials/insurance/medical_information',:locals=>{:medical=>medical,:f=>f}%>
+  <%=f.submit "Save"%>
+  <%=link_to "Cancel", add_insurance_path(profile.id), :class=>'submit-button-link'%>
+<%end%>

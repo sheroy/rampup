@@ -1,0 +1,114 @@
+<%if Profile.find_by_id(params[:id]).nil?%>
+<h3>New TWer</h3><br/>
+<%else%>
+<h3><%= Profile.find_by_id(params[:id]).common_name%></h3><br/>
+<%end%>
+<h3>Step 1 of 6 - Personal Details</h3> <br />
+<table>
+	<tr>
+		<td>
+			Type<span style="color:red">*</span>
+		</td>
+		<td>
+			<%= f.radio_button(:type,"ProfessionalServices",:checked=>true)%>ProfessionalServices
+			<%= f.radio_button(:type,"Support")%>Support
+			<%= f.radio_button(:type,"Etg")%> ETG
+		</td>
+	</tr>
+	<tr>
+		<td>
+			Employee Id	<span style="color:red">*</span>
+		</td>
+		<td>
+			<%= f.text_field :employee_id %><br>
+		</td>
+			
+	</tr>
+	<tr>
+		<td>
+			Given Name<span style="color:red">*</span>
+		</td>
+		<td>
+			<%= f.text_field :name, :onkeyup => "concat_name();return false;" %>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<%= f.label :surname %><span style="color:red">*</span>
+		</td>
+		<td>
+			<%= f.text_field :surname, :onkeyup => "concat_name();return false;" %>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			Common Name
+		</td>
+		<td>
+			<%= f.text_field :common_name ,:readonly=>"readonly"%>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			Role<span style="color:red">*</span>
+		</td>
+		<td>
+			<%=f.select :title,Title.all.collect {|title| title.name.strip}.sort,:include_blank=>"--Select--"%>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<%= f.label :gender %><span style="color:red">*</span>
+		</td>
+		<td>
+			<%= f.radio_button(:gender,"Male",:checked=>true)%> Male
+			<%= f.radio_button(:gender,"Female")%> Female
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<%= f.label :marital_status %><span style="color:red">*</span>
+		</td>
+		<td>
+			<%= f.radio_button(:marital_status,"Single",:checked=>true)%> Single
+			<%= f.radio_button(:marital_status,"Married")%> Married
+            <%= f.radio_button(:marital_status,"Others")%> Others
+
+		</td>
+	</tr>
+	<tr>
+		<td>
+			Date of Birth<span style="color:red">*</span>
+		</td>
+		<td>
+			<%=f.date_select :date_of_birth, :start_year=>Time.now.year, :end_year => Time.now.year-100,:include_blank=>true,:order => [:day, :month, :year] %>
+		</td>
+	</tr>
+	<tr>
+		<td>Email Id<span style="color:red">*</span> </td>
+		<td><%= f.text_field :email_id%>@thoughtworks.com</td>
+	</tr>
+    <tr>
+      <td>Personal Email Id:<span style="color:red">*</span></td>
+      <td><%=f.text_field :personal_email_id%>(eg:aaa@gmail.com)</td>
+    </tr>
+	<tr>
+		<td>Father Name<span style="color:red">*</span></td>
+		<td><%= f.text_field :guardian_name %></td>
+	</tr>
+	<tr>
+		<td>Date Of Joining<span style="color:red">*</span></td>
+		<td><%= f.date_select :date_of_joining , :start_year=>Time.now.year, :end_year=>1991, :include_blank=>true, :order => [:day, :month, :year]%></td>
+	</tr>
+	<tr>
+		<td>Experience Prior to TW<span style="color:red">*</span></td>
+		<td><%= text_field_tag :years,convert_years_of_experience_to_years(params[:id])%>years</td>
+		<td><%= text_field_tag :months,convert_years_of_experience_to_months(params[:id])%>months</td>
+    </tr>
+    <tr>
+		<td>Home Office<span style="color:red">*</span></td>
+		<td><%=select(:profile, :location_id, Location.all.collect {|location| [location.name, location.id]}.sort ,:include_blank=>"--Select--")%></td>
+	</tr>
+</table>
+
+<br />

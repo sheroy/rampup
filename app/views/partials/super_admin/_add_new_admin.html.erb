@@ -1,0 +1,8 @@
+<ul class="category_list">
+  <% @users = User.find_all_by_role('admin').collect {|user|user.username}%>
+  <% @users.each do |user| %>
+     <li>
+        <%= user %><%= link_to 'Delete', {:controller=>'super_admin', :action=>'delete_admin', :id=>user}, {:class=>"delete_link", :confirm=>'Are you sure you wish to delete this admin ?'}%>
+     </li>
+  <% end %>
+</ul>

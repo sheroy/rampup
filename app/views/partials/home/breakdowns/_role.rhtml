@@ -1,0 +1,33 @@
+<table>
+  <% column_sum=[0,0,0,0] %>
+  <thead>
+    <th>Title</th>
+    <th>Bangalore</th>
+    <th>Chennai</th>
+    <th>Pune</th>
+    <th>Delhi-Gurgoan</th>
+    <th>Total</th>
+  </thead>
+
+  <%Profile.all.collect{|profile|profile.title.strip unless (profile.title.blank? || profile.title.nil?)}.compact.uniq.sort.each_with_index do |title, index|%>
+    <%row_sum=[0,0,0,0]%>
+    <%if valid_table_record?(title,role_breakdown)%>
+    <tr>
+      <td><%=title%></td>
+      <%LOCATIONS.each_with_index do |place,i|%>
+        <%row_sum[i]+=role_breakdown[place+'_'+title].to_i%>
+        <%column_sum[i]+=role_breakdown[place+'_'+title].to_i%>
+        <td><%=link_to role_breakdown[place+'_'+title].to_i ,role_distribution_path(:role=>title,:location=>place)%></td>
+      <%end%>
+      <td><%=link_to row_sum.sum,role_distribution_path(:role=>title,:location=>'*')%></td>
+    </tr>
+    <%end%>
+    <%end%>
+    <tr>
+      <td>Total</td>
+      <%LOCATIONS.each_with_index do |place,index|%>
+         <td><%=link_to column_sum[index] ,role_distribution_path(:role=>'*',:location=>place)%></td>
+        <%end%>
+        <td><%=link_to column_sum.sum ,role_distribution_path(:role=>'*',:location=>'*')%></td>
+    </tr>
+</table>

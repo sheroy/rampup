@@ -1,0 +1,50 @@
+
+<div>
+  <ul>
+    <li class='<%=tab_name_css("home",@tab_selected)%>'><%= link_to "Homepage", admin_home_path %></li>
+    <!--<li class='<%#=tab_name_css("distributions",@tab_selected)%>'><%#= link_to 'Distributions', distributions_path %></li>-->
+    <% if params[:incomplete] %>
+        <li class='<%=tab_name_css("master_data",@tab_selected)%>'><%= link_to 'Complete Master Data', completed_profiles_path %></li>
+    <% else %>
+        <li class='<%=tab_name_css("master_data",@tab_selected)%>'><%= link_to 'Incomplete Master Data', incomplete_profiles_path %></li>
+    <% end %>
+    <li class='<%=tab_name_css("report_generation",@tab_selected)%>'><%= link_to 'Report Generation', report_generation_path %></li>
+
+    <li class='<%=tab_name_css("manage_documents",@tab_selected)%>'>
+      <%= link_to_function 'Manage Documents', :onmouseover=>"show_element('drop_down_menu');return false", :onmouseout=>"hide_element('drop_down_menu');return false" %>
+      <div style="position:relative; z-index:10" onmouseout="hide_element('drop_down_menu');return false" onmouseover="show_element('drop_down_menu');return false">
+        <ul id="drop_down_menu" style="display:none">
+          <li><%= link_to "Template Management", template_generators_path %></li>
+          <li><%= link_to "Document Generation", document_generation_information_path %></li>
+          <li><%= link_to "Upload Employee Docs", document_upload_employee_search_path %></li>
+        </ul>
+      </div>
+    </li>
+
+    <li class='<%=tab_name_css("immigration",@tab_selected)%>'><%= link_to "Immigration", immigration_information_path %></li>
+
+    <li class='<%=tab_name_css("new_employee",@tab_selected)%>'>
+      <%= link_to_function 'New Employee', :onmouseover=>"show_element('drop_down_menu_employee');return false", :onmouseout=>"hide_element('drop_down_menu_employee');return false" %>
+      <div style="position:relative; z-index:10" onmouseout="hide_element('drop_down_menu_employee');return false" onmouseover="show_element('drop_down_menu_employee');return false">
+        <ul id="drop_down_menu_employee" style="display:none">
+          <li><%= link_to "Upload Excel", show_path %></li>
+          <li><%= link_to "Create Manually",new_profile_path %></li>
+        </ul>
+      </div>
+    </li>
+    <% if can? :manage, :superadmin %>
+        <li class='<%=tab_name_css("super_admin",@tab_selected)%>'>
+          <%= link_to_function 'Super Admin', :onmouseover=>"show_element('drop_down_menu_super_admin');return false", :onmouseout=>"hide_element('drop_down_menu_super_admin');return false" %>
+          <div style="position:relative; z-index:10" onmouseout="hide_element('drop_down_menu_super_admin');return false" onmouseover="show_element('drop_down_menu_super_admin');return false">
+            <ul id="drop_down_menu_super_admin" style="display:none">
+              <li><%= link_to "Manage Fields",manage_fields_path %></li>
+              <li><%= link_to "Manage Admins",manage_admin_path %></li>
+            </ul>
+          </div>
+        </li>
+     <% end %>
+
+    <!--<li><%#= link_to 'Admin Console', admin_console_path %></li>-->
+  </ul>
+  <div class="clear"></div>
+</div>

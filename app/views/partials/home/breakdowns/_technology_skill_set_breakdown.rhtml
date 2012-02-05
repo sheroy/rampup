@@ -1,0 +1,9 @@
+<div class = "data-panel">
+    <div id="employeeSkillSetDistributionChart"></div>
+</div>
+<div class="data-panel">
+	<h3>Employee Skillset Distribution</h3>
+	<%=render :partial=>'partials/home/breakdowns/technology'%>
+	<%=link_to "Export Table to Excel", export_skillset_breakdown_path(), :class=>'button-link'%>
+</div>
+<div class="clear"></div>

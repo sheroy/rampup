@@ -1,0 +1,3 @@
+<h3>Title Based Distribution</h3>
+<%=render :partial=>'partials/home/breakdowns/role', :locals=>{:role_breakdown=>role_breakdown,}%>
+<%=link_to "Export Table to Excel", export_role_breakdown_path(), :class=>'button-link'%>

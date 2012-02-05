@@ -1,0 +1,30 @@
+<%if dependent_visas.present?%>
+   <h3>Dependent's Visa Information</h3>
+<table>
+	<tr>
+        <th>Name</th>
+		<th>Category</th>
+		<th>Visa Status</th>
+		<th>Issue Date</th>
+		<th>Expiry Date</th>
+	</tr>
+	<%dependent_visas.each do |visa| %>
+	<tr>
+        <td><%=h display_if_not_nil(visa.dependent_passport.name)%></td>
+		<td><%=h display_if_not_nil(visa.category)%></td>
+		<td><%=h display_if_not_nil(visa.status)%></td>
+		<td><%=h custom_date_with_month(display_if_not_nil(visa.issue_date))%></td>
+		<td><%=h custom_date_with_month(display_if_not_nil(visa.expiry_date))%></td>
+        <td><%=link_to "Edit",edit_dependent_visa_path(:dependent_visa_id=>visa.id,:profile_id=>@profile.id,:passport_id=>visa.dependent_passport.id),:class=>'button-link'%></td>
+        <td><%=link_to "Delete",{:controller=>'visa',:action=>'delete_dependent_visa',:dependent_visa_id=>visa.id,:profile_id=>@profile.id,:passport_id=>visa.dependent_passport.id},:class=>'button-link',:onclick=>'return confirm("Are you sure you want to delete the Visa information?")'%></td>
+	    <td><%=link_to_function "More Info","invoke_pop_up(#{visa.id})",:class=>'button-link'%></td>
+        <%= render :partial=>'partials/visa/pop_up_view',:locals=>{:visa=>visa,:title=>"Visa for #{visa.dependent_passport.name}-#{visa.dependent_passport.profile.common_name}'s dependent",:uid => visa.id},:layout=>'partials/profile/show/pop_up'%>
+    </tr>
+	<%end%>
+</table>
+<%else%>
+<div>
+	<h3>Dependent's Visa Information</h3> <br />
+	No Visa Information
+</div>
+<%end%>

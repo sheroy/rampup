@@ -1,0 +1,11 @@
+<div>
+  <ul>
+    <li class='<%=tab_name_css(:personal, @tab_selected)%>'><%= link_to "Personal Details", employee_home_path %></li>
+    <li class='<%=tab_name_css(:qualifications,@tab_selected)%>'><%= link_to "Educational Qualifications", employee_qualifications_path %></li>
+    <li class='<%=tab_name_css(:experience,@tab_selected)%>'><%= link_to "Experience Details", employee_experience_path %></li>
+    <li class='<%=tab_name_css(:passport, @tab_selected)%>'><%= link_to "Passport Details", employee_passport_path %></li>
+    <li class='<%=tab_name_css(:insurance, @tab_selected)%>'><%= link_to "Life and Medical Insurance", show_insurance_path %></li>
+    <li class='<%=tab_name_css(:financial, @tab_selected)%>'><%= link_to "Financial Details", employee_financial_path %></li>
+  </ul>
+  <div class="clear"></div>
+</div>

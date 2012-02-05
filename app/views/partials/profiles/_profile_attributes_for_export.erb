@@ -1,0 +1,20 @@
+<table>
+  <thead>
+    <tr>
+      <%["PSID","Name","Title","Location","Date of Joining"].each do |header|%>
+        <th><%=header%></th>
+      <%end%>
+    </tr>
+  </thead>
+  <tbody>
+    <% profiles.each do |profile| %>
+      <tr>
+      <td><%= profile.employee_id%></td>
+      <td><%= profile.common_name %></td>
+      <td><%= profile.title %></td>
+      <td><%= Location.get_location_name_by_id(profile.location_id) %></td>
+      <td id="dates"><%= custom_date_with_month(profile.date_of_joining) %></td>
+    </tr>
+    <% end %>
+    </tbody>
+</table>

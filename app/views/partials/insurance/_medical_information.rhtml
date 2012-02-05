@@ -1,0 +1,16 @@
+<table>
+    <tr>
+      <td>Dependant Name:</td>
+      <td><%=f.text_field :name%></td>
+    </tr>
+    <tr>
+      <td>Relationship:</td>
+      <td><%=f.select :relationship,Relation.all.collect{|relation|relation.name}.sort,:include_blank=>'--select--'%></td>
+    </tr>
+    <tr>
+      <td>Date Of Birth</td>
+      <td><%=f.date_select :date_of_birth,:start_year=>Time.now.year, :end_year => Time.now.year-100,
+      :order => [:day,:month,:year],:include_blank=>true%></td>
+    </tr>
+  </table>
+ 

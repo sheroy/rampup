@@ -1,0 +1,4 @@
+<%form_for medical,:url=>{:controller=>'insurance',:action=>'save_medical_insurance',:id=>profile.id} do |f|%>
+  <%=render :partial=>'partials/insurance/medical_information',:locals=>{:medical=>medical,:f=>f}%>
+  <%=f.submit "Save Medical Insurance Information"%>
+<%end%>

@@ -1,0 +1,8 @@
+  <h4>Degree</h4>
+  <%= text_field_tag 'new_degree' %>
+  <ul class="category_list">
+    <% @degrees_of_employee = Degree.all.collect{|degree|degree.name} %>
+    <% @degrees_of_employee.each do |degree| %>
+       <li><%= degree %></li>
+    <% end %>
+  </ul>

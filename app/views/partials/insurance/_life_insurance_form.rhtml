@@ -1,0 +1,6 @@
+<br />
+<h3>Add Life Insurance Details</h3>
+<%form_for @life_insurance, :url=>{:action=>'save_life_insurance', :id=>@profile.id} do |f| %>
+    <%=render :partial=>'partials/insurance/life_insurance_form_attributes', :locals=>{:f=>f}%>
+    <%=f.submit "Add Life Insurance Information"%>
+<%end%>

@@ -1,0 +1,26 @@
+<table>
+  <% column_sum=[0,0,0,0] %>
+  <thead>
+    <th>Qualification Category</th>
+    <th>Bangalore</th>
+    <th>Chennai</th>
+    <th>Pune</th>
+    <th>Delhi-Gurgoan</th>
+    <th>Total</th>
+  </thead>
+
+  <%Qualification.all.collect(&:category).uniq.compact.sort.each_with_index do |category, index|%>
+    <%row_sum=[0,0,0,0]%>
+    <tr>
+      <td><%=category%></td>
+      <%LOCATIONS.each_with_index do |place,i|%>
+        <%row_sum[i]+=qualification_breakdown[place+'_'+category].to_i%>
+        <%column_sum[i]+=qualification_breakdown[place+'_'+category].to_i%>
+        <td><%=link_to qualification_breakdown[place+'_'+category].to_i ,qualification_distribution_path(:category=>category,:location=>place)%></td>
+      <%end%>
+      <td><%=link_to row_sum.sum,qualification_distribution_path(:category=>category,:location=>'*')%></td>
+    </tr>
+    <%end%>
+</table>
+
+

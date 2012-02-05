@@ -1,0 +1,12 @@
+<%if flash[:notice]%>
+<div id="notify" class="info">
+	<%= flash[:notice] %>
+
+</div>
+<%end%>
+<%if flash[:error]%>
+<div id="notify" class="errors">
+	<%= flash[:error]%>
+
+</div>
+<%end%>

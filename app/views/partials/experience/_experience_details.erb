@@ -1,0 +1,4 @@
+<%form_for(:experience, :url => { :action=>'add', :profile_id => params[:profile_id] }) do |f| %>
+	<%=render :partial=>'partials/experience/experience_form', :locals=>{:f=>f}%>
+	<%=f.submit "Add Experience"%>
+<%end%>

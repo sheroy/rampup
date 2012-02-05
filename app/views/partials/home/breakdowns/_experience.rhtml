@@ -1,0 +1,46 @@
+<table>                                 
+  <%column_sum=[0,0,0,0]%>
+  <%total_sum=0%>
+  <tr>
+    <th>Experience</th>
+    <th>Bangalore</th>
+    <th>Chennai</th>
+    <th>Pune</th>
+    <th>Delhi-Gurgoan</th>
+    <th>Total</th>
+  </tr>
+  <%(0..8).each_with_index do |row,i|%>
+    <tr>
+      <td><%= caption(i)%> </td>
+      <%total_sum=0%>
+      <% Location.all.collect.each_with_index do |location, j| %>
+        <td><%= link_to  @experience_breakdown[location + "_" + row.to_s].to_i, employee_distribution_path(:location=> location, :experience=> i) %></td>
+        <% total_sum += @experience_breakdown[location + "_" + row.to_s].to_i  %>
+        <% column_sum[j] += @experience_breakdown[location + "_" + row.to_s].to_i %>
+      <%end%>
+       <%  @pie_breakdown << total_sum %>
+      <td><%= link_to total_sum, employee_distribution_path(:location=> "*", :experience=> i) %></td>
+    </tr>
+  <% end %>
+  <%total_sum=0%>
+  <tr>
+    <td>Greater than 9 yrs</td>
+    <%total_sum=0%>
+    <% Location.all.collect.each_with_index do |location, j| %>
+      <td> <%= link_to  @experience_greater_than_9_yrs[location].to_i, employee_distribution_path(:location=> location, :experience=> "greater_than_9")%></td>
+        <% total_sum += @experience_greater_than_9_yrs[location].to_i  %>
+        <% column_sum[j] +=  @experience_greater_than_9_yrs[location].to_i  %>
+      <% end %>
+      <%  @pie_breakdown << total_sum %>
+    <td><%= link_to total_sum.to_i, employee_distribution_path(:location=> "*", :experience=> "greater_than_9") %></td>
+  </tr>
+
+  <tr>
+    <td>Total</td>
+    <td><%= link_to column_sum[0], employee_distribution_path(:location=> "Bangalore", :experience=> "greater_than_0") %></td>
+    <td><%= link_to column_sum[1], employee_distribution_path(:location=> "Chennai", :experience=> "greater_than_0")%></td>
+    <td><%= link_to column_sum[2], employee_distribution_path(:location=> "Pune", :experience=> "greater_than_0")%></td>
+    <td><%= link_to column_sum[3], employee_distribution_path(:location=> "Delhi-Gurgoan", :experience=> "greater_than_0")%></td>
+    <td><%= link_to column_sum.inject(0) { |s,v| s += v }, employee_distribution_path(:location=> "*", :experience=> "greater_than_0") %></td>
+  </tr>
+</table>

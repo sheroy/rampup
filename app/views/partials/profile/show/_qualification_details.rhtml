@@ -1,0 +1,23 @@
+<h3>Educational Qualifications Details:</h3> <br/>
+<%if profile.qualifications.size > 0%>
+<table>
+	<tr class="even">
+        <th>Category</th>
+        <th>Degree</th>
+		<th>Branch</th>
+		<th>University</th>
+		<th>Graduation Year</th>
+	</tr>
+	<%profile.qualifications.each do |qualification|%>
+	<tr>
+        <td><%=h qualification.category%></td>
+        <td><%=h qualification.degree%></td>
+		<td><%=h qualification.branch%></td>	
+		<td><%=h qualification.college%></td>
+		<td><%=h qualification.graduation_year%></td>
+	</tr>
+	<%end%>
+</table>
+<%else%>
+No Qualifications yet. <br/>
+<%end%>

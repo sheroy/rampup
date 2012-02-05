@@ -1,0 +1,55 @@
+<h3>Add New Visa Information</h3>
+<table>
+	<tr>
+		<td>Visa Category:</td>
+		<td><%=f.select :category,VisaCategory.all.collect{|category|category.name}.uniq.compact.sort,{:include_blank=>'--select--'},{:onChange => "set_readonly_based_on_visa_type();return false;"}%></td>
+	</tr>
+	<tr>
+		<td>Visa Status:</td>
+		<td><%=f.select(:status,["Stamped","Rejected","Pending","No Visa"],:include_blank=>"--select--")%></td>
+	</tr>
+	<tr>
+		<td>Issue Date:</td>
+		<td><%=f.date_select :issue_date,:order => [:day,:month,:year],:include_blank=>true, :start_year=>Time.now.year-10, :end_year=>Time.now.year+10%></td>
+	</tr>
+	<tr>
+		<td>Expiry Date:</td>
+		<td><%=f.date_select :expiry_date,:order => [:day,:month,:year],:include_blank=>true, :start_year=>Time.now.year-10, :end_year=>Time.now.year+10%></td>
+	</tr>
+	<tr>
+		<td>Reason:</td>
+		<td><%=f.text_field :reason%></td>
+	</tr>
+	<tr>
+		<td>Visa Type:</td>
+		<td><%=f.text_field :visa_type%></td>
+	</tr>
+	<tr>
+		<td>Appointment Date:</td>
+		<td><%=f.date_select :appointment_date,:order => [:day,:month,:year],:include_blank=>true, :start_year=>Time.now.year-10, :end_year=>Time.now.year+10%></td>
+	</tr>
+	<tr>
+		<td>Travel By:</td>
+		<td><%=f.date_select :travel_by,:order => [:day,:month,:year],:include_blank=>true, :start_year=>Time.now.year-10, :end_year=>Time.now.year+10%></td>
+	</tr>
+	<tr>
+		<td>Date Of Return:</td>
+		<td><%=f.date_select :date_of_return,:order => [:day,:month,:year],:include_blank=>true, :start_year=>Time.now.year-10, :end_year=>Time.now.year+10%></td>
+	</tr>
+	<tr>
+		<td>Petition Status:</td>
+		<td><%=f.select(:petition_status,["Applied for","Not Applied","Rejected","Completed","Need Docs"],:include_blank=>"--select--")%></td>
+	</tr>
+	<tr>
+		<td>Timeline:</td>
+		<td><%=f.select(:timeline,["Jan-Mar","Apr-Jun","Jul-Sep","Oct-Dec"],:include_blank=>"--select--")%></td>
+	</tr>
+	<tr>
+		<td>Country:</td>
+		<td><%=f.select(:country, Country.all.collect{|country|country.name}.sort,:include_blank=>"--select--")%></td>
+	</tr>
+	<tr>
+		<td><%=f.submit "Save Visa Information"%></td>
+		<td><%=link_to "Cancel", visa_path(@profile.id), :class=>'button-link'%></td>
+	</tr>
+</table>

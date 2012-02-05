@@ -1,0 +1,21 @@
+<h3>Access Card Details:</h3><br/>
+<table>
+	<tr>
+		<td>Access Card Number</td>
+		<td><%=h @user_profile.access_card_number%></td>
+	</tr>
+    <tr>
+		<td>Blood Group</td>
+		<td><%=h @user_profile.blood_group%></td>
+	</tr>
+	<tr>
+		<td>Emergency Contact Person<span style="color:red">*</span></td>
+		<td><%= f.text_field :emergency_contact_person%></td>
+	</tr>
+	<tr>
+		<td>Emergency Contact Number<span style="color:red">*</span></td>
+		<td><%= f.text_field :emergency_contact_number%></td>
+	</tr>
+</table>
+
+<br/><br/>

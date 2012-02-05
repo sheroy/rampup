@@ -1,0 +1,26 @@
+<%unless passport.nil?%>
+<table>
+	<tr>
+		<td>Passport Number:</td>
+		<td><%=h display_if_not_nil(passport.number)%></td>
+	</tr>
+	<tr>
+		<td>Date Of Issue:</td>
+		<td><%=h custom_date_with_month(passport.date_of_issue)%></td>
+	</tr>
+	<tr>
+		<td>Date Of Expiry:</td>
+		<td><%=h custom_date_with_month(passport.date_of_expiry)%></td>
+	</tr>
+	<tr>
+		<td>Place Of Issue:</td>
+		<td><%=h display_if_not_nil(passport.place_of_issue)%></td>
+	</tr>
+	<tr>
+		<td>Nationality:</td>
+		<td><%=h display_if_not_nil(passport.nationality)%></td>
+	</tr>
+</table>  
+<%else%>  
+No Passport Details<br/>
+<%end%>   

@@ -1,0 +1,21 @@
+<h3>Medical Insurance Details:</h3><br/>
+<%if profile.medicals.present?%>
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Relationship</th>
+    <th>Date Of Birth</th>
+    <th>Age</th>
+  </tr>
+    <%profile.medicals.each do |medical|%>
+      <tr>
+        <td><%=medical.name%></td>
+        <td><%=medical.relationship%></td>
+        <td><%=custom_date_with_month(medical.date_of_birth)%></td>
+        <td><%=medical.age%></td>
+      </tr>
+    <%end%>
+</table>
+<%else%>
+No Details Yet<br/>
+<%end%>

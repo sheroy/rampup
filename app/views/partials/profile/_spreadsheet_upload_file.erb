@@ -1,0 +1,40 @@
+<script type="text/javascript">
+    function fileSelectedChanged(obj) {
+    var filePath = obj.value;
+    var ext = filePath.substring(filePath.lastIndexOf('.') + 1).toLowerCase();
+     if(ext != 'xlsx' && ext !='xls') {
+
+         $('#spreadsheet_selected').attr("value","");
+         $('#error_message').html('Only Excel Files are allowed');
+    }
+    else
+     {
+
+         $('#error_message').html('');
+     }
+}
+</script>
+<html>
+    <body>
+
+        <table>
+          <tr>
+            <td>
+                <b>Select File:</b>
+            </td>
+            <td>
+                <input name="spreadsheet_name" id="spreadsheet_id" size="30" onchange=fileSelectedChanged(this) type="file"/>
+            </td>
+            <td>
+                <input name = "Upload" value="Upload" type = "button"/>
+            </td>
+          </tr>
+          <tr> <label id="error_message" style="color:red"></label>
+            <br><br><br>
+          </tr>
+
+            </table>
+    </body>
+        <br><br><br>
+</html>
+

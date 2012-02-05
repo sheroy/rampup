@@ -1,0 +1,24 @@
+<% if attached_documents.blank? %>
+    <h4>No documents exist</h4>
+<% else %>
+    <% form_for(:attached_document, :url=>attached_document_process_path(:id => profile_id)) do |f| %>
+        <table id="list_of_attached_documents">
+          <tr>
+            <th>Document Type</th>
+            <th>Name</th>
+            <th>File Name</th>
+            <th></th>
+          </tr>
+          <% attached_documents.sort_by(&:name).each do |document| %>
+              <tr>
+                <td id = "document_type"><%= document.document_type %></td>
+                <td id = "document_name"><%= document.name %></td>
+                <td id = "document_filename"><%= document.document_file_name %></td>
+                <td><%= check_box_tag 'selected[]', document.id, false, :id=>document.name %></td>
+              </tr>
+          <% end %>
+          <tr><td colspan="3" style="text-align:right;" ><h3><%= submit_tag 'Delete',:confirm => 'Are you sure?' %></h3></td>
+          <td colspan="4" style="text-align:right;" ><%=submit_tag "Download" %></td></tr>
+        </table>
+    <% end %>
+<% end %>

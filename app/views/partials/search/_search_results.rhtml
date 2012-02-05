@@ -1,0 +1,53 @@
+<div id="rm_search_results">
+<h4><%=h @search_results_title%>(<%=@results.length%> Records)</h4>
+<table id="sortable">
+  <thead>
+    <tr>
+    	<th>PSID</th>
+        <th>Name</th>
+        <th>Current Location</th>
+        <th>Title</th>
+        <%= content_tag(:th,"From When") unless params[:from_when].blank? %>
+        <th>Account Name</th>
+        <th>Current Project</th>
+        <th>Start Date</th>
+        <th>End Date</th>
+        <th>Exp. before TW</th>
+        <th>Exp. in TW</th>
+        <th>Total</th>
+    </tr>
+  </thead>
+  <tbody>
+    <%results.each do |profile|%>
+      <tr>
+        <% if profile.EmployeeID.nil?%>
+          <td>Tentative</td>
+        <%else%>
+          <td>
+            <%= link_to profile.EmployeeID, :controller => 'profile', :action => 'resource', :id => profile.EmployeeID,
+              :search => true%></td>
+          <%end%>
+        <td><%= profile.Name %></td>
+        <td><%= profile.current_location.Name%></td>
+        <td><%= profile.level.title.Name%></td>
+        <%= content_tag(:td,from_when(profile),:width=>'70') unless params[:from_when].blank? %>
+        <td><%= (profile.current_project.nil?)? "--Not-Set--" : (display_if_not_nil(profile.current_project.project.account.Name))%></td>
+        <td><%= (profile.current_project.nil?)? "--Not-Set--" :(link_to display_if_not_nil(profile.current_project.project.Name),{:controller => 'project',:action=>'show',:id=>profile.current_project.ProjectID},:popup=>true) %>
+        <td class="nowrap"><%= display_if_not_nil((custom_date_with_month(profile.current_project.StartDate.to_date) unless profile.current_project.nil?)) %></td>
+        <td class="nowrap"><%= display_if_not_nil((custom_date_with_month(profile.current_project.EndDate.to_date) unless profile.current_project.nil?))%></td>
+        <td><%= display_months_in_years(profile.experience_prior_to_thoughtworks_in_months)%></td>
+        <td><%= display_months_in_years(profile.years_of_experience_in_months)%></td>
+        <td><%= display_months_in_years(profile.total_experience_in_months)%></td>
+        <%unless profile.employee.nil?%>
+          <td class="nowrap"><%= link_to "View RM Info",show_profile_rm_view_path(profile.employee),:class=>'button-link display_block'%></td>
+        <%end%>
+      </tr>
+    <%end%>
+  </tbody>
+</table>
+</div>
+<style type="text/css">
+html, body {
+overflow: hidden;
+}
+</style>

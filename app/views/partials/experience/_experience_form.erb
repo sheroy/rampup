@@ -1,0 +1,23 @@
+<script type="text/javascript">
+    autoCompleteDropDownOptions = <%= experience_autoComplete_sources %>
+
+</script>
+
+<table>
+	<tr>
+		<td>Technology:</td>
+		<td><%= f.text_field :technology , :class => "autoCompleteField" %></td>
+		<td><span style="color:red"> <%=render :partial=>'partials/common/error_messages', :locals=>{:target=>@experience, :field=>:technology}%></span></td>
+		
+	</tr>
+	<tr>
+		<td>Last Used:</td>
+		<td><%= f.date_select :last_used,:end_year=>1991,:start_year=>Time.now.year,:order => [:month, :year],:include_blank=>true%></td>
+		<td><span style="color:red"> <%=render :partial=>'partials/common/error_messages', :locals=>{:target=>@experience, :field=>:last_used}%></span></td>
+	</tr>
+	<tr>
+		<td>Duration:</td>
+		<td><%= text_field_tag :years,convert_duration_to_years(params[:id])%> Years</td>
+		<td><%= text_field_tag :months,convert_duration_to_months(params[:id])%> Months</td>
+		<td><span style="color:red"> <%=render :partial=>'partials/common/error_messages', :locals=>{:target=>@experience, :field=>:duration}%></span></td>	</tr>
+</table>

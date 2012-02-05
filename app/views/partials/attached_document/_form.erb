@@ -1,0 +1,20 @@
+<fieldset>
+  <% form_for :attached_document, :url => {:controller => :attached_document, :action => "upload"}, :html => {:multipart => true} do |f| %>
+      <h3>Upload New Documents</h3>
+      <table>
+        <tr>
+          <td><label>Document Type</label></td>
+          <td><%= select :attached_document, :document_type, %w[Passport Education Employment Financial/Tax Other], {:include_blank => "Select type"} %></td>
+        </tr>
+        <tr>
+          <td><label>File</label></td>
+          <td><%= f.file_field :document %></td>
+        </tr>
+        <tr>
+          <td><label>Name</label></td>
+          <td><%= f.text_field :name, {:placeholder => "File name"} %></td>
+        </tr>
+        <tr><td></td><td><%= submit_tag "Upload", {:id => "upload"} %></td></tr>
+      </table>
+  <% end %>
+</fieldset>

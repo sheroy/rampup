@@ -1,0 +1,25 @@
+<%if profile.medicals.present?%>
+<table>
+  <tr>
+    <th>Dependent Name</th>
+    <th>Relationship</th>
+    <th>Date Of Birth</th>
+    <th>Age</th>
+  </tr>
+    <%profile.medicals.each do |medical|%>
+      <tr>
+        <td><%=medical.name%></td>
+        <td><%=medical.relationship%></td>
+        <td><%=custom_date_with_month(medical.date_of_birth)%></td>
+        <td><%=medical.age%></td>
+		<% if @current_user.role == "admin" or @current_user.role == "superadmin" %>
+        	<td><%=link_to "Edit", edit_medical_insurance_path(profile.id, medical.id), :class=>'button-link'%></td>
+	    	<td><%=link_to "Delete", delete_medical_insurance_path(profile.id, medical.id), :class=>'button-link',:onclick=>'return confirm("Are u sure u want to delete the dependent?")'%></td>
+		<% end %>
+      </tr>
+    <%end%>
+</table>
+<% else %>
+	Medical insurance dependent(s) details not provided
+	<br>
+<%end%>

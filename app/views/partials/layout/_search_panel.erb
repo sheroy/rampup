@@ -1,0 +1,7 @@
+<% if can? :manage, :all  %>
+	<%= form_tag url_for(:search_terms=>''),{:method=>:get} do %>
+		<%= text_field_tag :search_terms, params[:search_terms],:id => "search_terms",
+	 	:value=>"Employee Search",:onfocus=>"remove_watermark(this);return false",:onblur=>"add_watermark(this);return false"%>
+		<%= submit_tag "Search"%>
+	<% end %>
+<%end%>

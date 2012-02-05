@@ -1,0 +1,4 @@
+<h3>Qualification Based Breakdown</h3>
+<%=render :partial=>'partials/home/breakdowns/qualification',:locals=>{:qualification_breakdown=>@qualification_breakdown}%>
+<%=link_to "Export Table to Excel", export_qualification_breakdown_path(), :class=>'button-link'%>
+

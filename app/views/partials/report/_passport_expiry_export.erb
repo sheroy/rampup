@@ -1,0 +1,11 @@
+<%title "Export Profiles  With No Passport"%>
+<div>
+<div class="label_text float-left clear_left">
+<h4>Employees Whose Passports Expire In Next 8 Months</h4>
+</div>
+<div id="options" class="float-left">
+	<%= form_tag('passport_expiring_profiles_exporter') do %>
+	<%= submit_tag "Generate"%>
+	<%end%>
+</div>
+</div>

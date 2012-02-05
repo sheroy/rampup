@@ -1,0 +1,17 @@
+<h3>Passport Information for <%=h display_if_not_nil(@profile.common_name)%></h3>
+<%if @profile.passport.nil?%>
+    <%=render :partial=>'partials/passport/passport_form', :locals=>{:passport => @passport, :profile=>@profile}%>
+<%else%>
+    <%=render :partial=>'partials/passport/passport_information', :locals=>{:passport => @passport, :profile=>@profile}%>
+    <%=link_to "Edit",edit_passport_path(:profile_id => @profile.id),:class=>'button-link'%>
+    <%=link_to 'Add Visa Information',add_new_visa_path(:id=>@profile.id),:class=>'button-link'%>
+<%unless @search.nil?%>
+    <a href="javascript:history.go(-1)" class="button-link">Back to Search Results</a>
+<%end%>
+
+<br/><br/><br/>
+<%end%>
+
+<%=render :partial=>'partials/passport/dependent_passport_list', :locals=>{:dependent_passports=>@profile.dependent_passports, :immigration_view=>true, :admin=>true} %>
+
+

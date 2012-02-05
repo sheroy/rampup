@@ -1,0 +1,18 @@
+<h3>Transfer Details</h3><br/>
+
+<table>
+	<tr>
+		<td>Transferred From</td>
+		<td><%= f.select :transfer_from,  @locations.collect {|office| office.Name}.sort, :include_blank => "--Select--"%></td>
+	</tr>
+	<tr>
+		<td>Transferred To</td>
+		<td><%=select(:profile, :transfer_to, @locations.collect {|office| office.Name}.sort,:include_blank=>"--Select--")%></td>
+	</tr>
+	<tr>
+		<td>Date of Transfer</td>
+		<td><%= f.date_select :transfer_date,:start_year=>1991, :end_year=>Time.now.year,:order => [:day, :month, :year],:include_blank=>true%></td>
+	</tr>
+</table>
+
+<br/><br/>

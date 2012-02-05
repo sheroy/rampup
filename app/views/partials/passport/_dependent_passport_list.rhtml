@@ -1,0 +1,36 @@
+<h3>Dependent's Passports</h3>
+ <%unless dependent_passports.size==0%>
+   <table>
+    <tr>
+      <th>Name</th>
+      <th>Relationship</th>
+      <th>Passport Number</th>
+      <th>Date Of Issue</th>
+      <th>Date Of Expiry</th>
+      <th>Place Of Issue</th>
+      <th>Nationality</th>
+    </tr>
+    <%dependent_passports.each do |passport|%>
+      <tr>
+        <td><%=passport.name%></td>
+        <td><%=passport.relationship%></td>
+        <td><%=passport.number%></td>
+        <td><%=custom_date_with_month(passport.date_of_issue)%></td>
+        <td><%=custom_date_with_month(passport.date_of_expiry)%></td>
+        <td><%=passport.place_of_issue%></td>
+        <td><%=passport.nationality%></td>
+        <%if admin%>
+            <%if immigration_view.nil?%>
+              <td><%=link_to "Edit", edit_dependent_passport_path(:id=>passport.profile_id,:dependent_passport_id=>passport.id), :class=>'button-link'%></td>
+              <td><%=link_to "Delete", delete_dependent_passport_path(:id=>passport.profile_id,:dependent_passport_id=>passport.id), :class=>'button-link', :confirm => 'Are you sure?', :method => :delete %></td>
+            <%else%>
+              <td><%=link_to "Add Visa Information", add_dependent_visa_path(:passport_id=>passport.id,:profile_id=>passport.profile_id), :class=>'button-link'%></td>
+            <%end%>
+        <%end%>
+      </tr>
+    <%end%>
+  </table>
+ <%else%>
+ No Dependent's Passport Details<br/>
+
+<%end%>

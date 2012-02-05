@@ -1,0 +1,11 @@
+<fieldset>
+  <% form_for :zipped_document, :url => zipped_document_path(:id => @profile.id), :html => { :multipart => true } do |f|%>
+      <h3>Upload New Documents</h3>
+      <br>
+      <label>Select the Zip file for uploading scanned documents</label>
+      <br>
+      <%= f.file_field :document_zip %>
+      <br>
+      <%= submit_tag "Upload", {:id => "upload"} %>
+  <% end %>
+</fieldset>

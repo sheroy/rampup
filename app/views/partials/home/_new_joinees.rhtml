@@ -1,0 +1,23 @@
+<h3>Recently Joined Employees</h3>
+<table>
+ 
+	<tr>
+		<th>PSID</th>
+		<th>Name</th>		
+		<th>Role</th>
+		<th>Location</th>
+		<th>Date Of Joining</th>
+    </tr>
+     <%new_joinees.each do |employee|%>
+	<tr>
+		<td><%=link_to employee.employee_id,show_profile_path(employee.id)%></td>
+		<td><%=employee.common_name%></td>
+		<td><%=employee.title%></td>
+		<td><%=Location.get_location_name_by_id(employee.location_id)%></td>
+		<td><%=h custom_date_with_month(employee.date_of_joining)%></td>
+	</tr>
+    <%end%>
+	 <tr>
+        <td><%= link_to "More...", newly_joined_employees_path%></td>
+    </tr>
+</table>

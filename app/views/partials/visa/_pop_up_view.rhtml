@@ -1,0 +1,50 @@
+<div class="visa_full_info">
+  <div>
+    <div>Category:</div>
+    <span><%=h display_if_not_nil(visa.category)%></span>
+  </div>
+  <div>
+    <div>Visa Status:</div>
+    <span><%=h display_if_not_nil(visa.status)%></span>
+  </div>
+  <div>
+    <div>Issue Date:</div>
+    <span><%=h custom_date_with_month(display_if_not_nil(visa.issue_date))%></span>
+  </div>
+  <div>
+    <div>Expiry Date:</div>
+    <span><%=h custom_date_with_month(display_if_not_nil(visa.expiry_date))%></span>
+  </div>
+  <div>
+    <div>Reason:</div>
+    <span><%=h display_if_not_nil(visa.reason)%></span>
+  </div>
+  <div>
+    <div>Visa Type:</div>
+    <span><%=h display_if_not_nil(visa.visa_type)%></span>
+  </div>
+  <div>
+    <div>Appointment Date:</div>
+    <span><%=h custom_date_with_month(display_if_not_nil(visa.appointment_date))%></span>
+  </div>
+  <div>
+    <div>Travel By:</div>
+    <span><%=h custom_date_with_month(display_if_not_nil(visa.travel_by))%></span>
+  </div>
+  <div>
+    <div>Date Of Return:</div>
+    <span><%=h custom_date_with_month(display_if_not_nil(visa.date_of_return))%></span>
+  </div>
+  <div>
+    <div>Petition Status:</div>
+    <span><%=h display_if_not_nil(visa.petition_status)%></span>
+  </div>
+  <div>
+    <div>Timeline:</div>
+    <span><%=h display_if_not_nil(visa.timeline)%></span>
+  </div>
+  <div>
+    <div>Country:</div>
+    <span><%=h display_if_not_nil(visa.country)%></span>
+  </div>
+</div>

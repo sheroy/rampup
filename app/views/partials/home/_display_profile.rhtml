@@ -1,0 +1,15 @@
+<%if profiles%>
+<table cellspacing="0" class="data">
+<tr><%["Employee Id","Name", "Role", "Location"].each do |profile|%><th><%=profile%></th><%end%></tr>
+	<%profiles.each do |profile|%>
+	<tr>
+			<td><%=link_to profile.employee_id, show_profile_path(profile.id)%></td>
+			<td><%=profile.name%></td>
+			<td><%=profile.title%></td>
+			<td><%=Location.get_location_name_by_id(profile.location_id)%></td>
+	</tr>
+	<%end%>
+</table>
+<%else%>
+ No Profiles were recently updated.
+<%end%>

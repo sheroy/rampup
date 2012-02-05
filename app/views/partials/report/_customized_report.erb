@@ -1,0 +1,120 @@
+<%= javascript_include_tag "custom_report" %>
+<%= javascript_include_tag "jquery.json-2.2.min" %>
+
+<div class="clear" id="custom_report">
+  <h3>Customized Report</h3>
+
+  <div>
+    Employee ID, First name, Last name, Home Office are displayed by default on the reports
+  </div>
+
+  <%= form_tag('custom_report_exporter', :id=>:custom_report_exporter) do %>
+      <h4>Selected Report Columns</h4>
+      <table id="selected_columns">
+        <tr>
+          <td name="Employee ID">Employee ID</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td name="First Name">First Name</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td name="Last Name">Last Name</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td name="Home Office">Home Office</td>
+          <td></td>
+        </tr>
+
+      </table>
+      <%= link_to 'Generate Report', "#", :class=>'submit-button-link', 'onClick'=>'generate_custom_report()' %>
+      <%= hidden_field 'columns_hash', '' %>
+      <div id="reporting_columns">
+        <h2>Select Additional Columns:</h2>
+
+        <div id="selectable_columns">
+          <h3><a href="#">Personal Details</a></h3>
+
+          <div>
+            <ul>
+              <li id='role'>Role</li>
+              <li>Gender</li>
+              <li>Marital Status</li>
+              <li>Email ID</li>
+              <li>Personal Email ID</li>
+              <li>Date of Birth</li>
+              <li>Date of Joining</li>
+              <li>Experience prior to TW</li>
+              <li>Blood Group</li>
+              <li>Emergency Contact Person</li>
+              <li>Emergency Contact Number</li>
+            </ul>
+          </div>
+          <h3><a href="#">Qualification Details</a></h3>
+
+          <div>
+            <ul>
+              <li>Category</li>
+              <li>Degree</li>
+              <li>Branch</li>
+              <li>University</li>
+              <li>Year of Graduation</li>
+            </ul>
+          </div>
+          <h3><a href="#">Experience Details</a></h3>
+
+          <div>
+            <ul>
+              <li>Technology</li>
+              <li>Last Used</li>
+              <li>Duration(months)</li>
+            </ul>
+          </div>
+          <h3><a href="#">Passport Details</a></h3>
+
+          <div>
+            <ul>
+              <li>Passport Number</li>
+              <li>Date of Issue</li>
+              <li>Date of Expiry</li>
+              <li>Place of Issue</li>
+              <li>Nationality</li>
+            </ul>
+          </div>
+          <h3><a href="#">Life and Medical Insurance</a></h3>
+
+          <div>
+            <p style="font-size: 13px; margin-left: -10px;"> Life Insurance
+              <br>
+            <ul style="margin-top: 10px; margin-bottom: 10px;">
+              <li>Beneficiary Name</li>
+              <li>Relationship with Employee</li>
+              <li>Percentage</li>
+            </ul>
+
+            <p style="font-size: 13px; margin-left: -10px;"> Medical Insurance
+              <br>
+            <ul style="margin-top: 10px; margin-bottom: 10px;">
+              <li>Dependent Name</li>
+              <li>Relationship</li>
+              <li>DOB</li>
+              <li>Age</li>
+            </ul>
+          </div>
+          <h3><a href="#">Financial Information</a></h3>
+
+          <div>
+            <ul>
+              <li>Bank Account No</li>
+              <li>PAN No</li>
+              <li>EPF No</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+  <% end %>
+
+</div>
+
