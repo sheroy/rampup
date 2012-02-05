@@ -17,7 +17,7 @@ describe Location do
     location2.name = "locale2"
     location2.countries_id = 2
     location2.save
-    Location.get_all_location_ids.size.should==30
+    Location.get_all_location_ids.size.should==33
   end
 
   it "should return a sorted list all location names" do
@@ -28,7 +28,7 @@ describe Location do
     @location2.countries_id = 2
     @location2.save
     @locations = Location.getAllSortedLocations
-    @locations.size.should == 30
+    @locations.size.should == 33
     @locations.first.should == "Bangalore 1"
     @locations.last.should == "alocale"
   end
