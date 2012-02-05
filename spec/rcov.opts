@@ -1,0 +1,2 @@
+--exclude "ruby/*, spec/*, gems/*, integration/*, features/*, db/*, config/*, public/*"
+--rails
