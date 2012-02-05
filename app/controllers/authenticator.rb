@@ -37,7 +37,11 @@ module LocalAuthenticator
       return @current_user
     end
     puts session[:cas_user]
-    return @current_user = User.find_by_username(session[:cas_user])
+    @current_user = User.find_by_username(session[:cas_user])
+  end
+
+  def set_current_user(current_user)
+    @current_user = current_user
   end
 
   private

@@ -4,12 +4,6 @@ describe HomeController do
   def setup
   end
 
-  #test "render index if have read ability on project" do
-  #  @ability.can :read, Project
-  #  get :index
-  #  assert_template :index
-  #end
-  #
   before(:each) do
     @project = mock("project")
     @projects = [@project,@project]
@@ -22,6 +16,7 @@ describe HomeController do
   it "should render the home page for the admin" do
     Profile.should_receive(:all).with(:limit=>5, :order=>'date_of_joining desc')
     Distribution::AdminDistribution.should_receive(:head_count_breakdown)
+    @controller.set_current_user(User.new(:username=>"admin", :password=>"pass", :role=>"admin"))
     get :admin
     response.should be_success
   end
@@ -41,7 +36,7 @@ describe HomeController do
   end
 
   describe "Home controller" do
-    integrate_views
+    render_views
     before(:each) do
       ModelFactory.create_profile(:years_of_experience=>12, :date_of_joining=>DateTime.now - 1.year, :employee_id=>'12121', :location => "Chennai")
       ModelFactory.create_profile(:years_of_experience=>12, :date_of_joining=>DateTime.now - 1.year, :employee_id=>'33333', :location => "Bangalore")

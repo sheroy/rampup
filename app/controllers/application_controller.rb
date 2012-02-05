@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   layout 'master'
   require 'authenticator'
+  print "Here"
   include (AuthenticationConfig[:enable_cas] == true ? CASAuthenticator : LocalAuthenticator)
 
   helper :all
