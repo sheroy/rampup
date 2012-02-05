@@ -555,8 +555,8 @@ describe Profile do
 
   describe "get current employees with specific info" do
     before(:each) do
-      location = ModelFactory.create_location(:name => "Chennai")
-      @profile_2e = ModelFactory.create_profile(attr = {:employee_id => '98989', :title=>'Developer', :gender=>'Male', :account_no=>'777770', :pan_no=>'777771', :epf_no=>'777772',:location => location}, qualification_attrs = {:branch=>"cse", :degree=>'BE'})
+      location = Location.find_by_id(1)
+      @profile = ModelFactory.create_profile(attr = {:employee_id => '98989', :title=>'Developer', :gender=>'Male', :account_no=>'777770', :pan_no=>'777771', :epf_no=>'777772'}, qualification_attrs = {:branch=>"cse", :degree=>'BE'})
       @profile_2 = ModelFactory.create_profile(:employee_id => '98988', :title=>'Developer', :gender=>'Male', :account_no=>'777774', :pan_no=>'777775', :epf_no=>'777776', :last_day => '2011-03-05'.to_datetime)
       @qualification_1 = ModelFactory.create_qualification(:branch=>"cse", :degree=>'BE', :profile=>@profile)
       @passports = ModelFactory.create_passport(:number=>'1983374557', :date_of_issue=>'2010-03-05'.to_datetime, :profile=>@profile)
