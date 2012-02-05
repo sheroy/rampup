@@ -1,0 +1,17 @@
+development:
+  :enable_cas: false
+
+test: &test
+  :enable_cas: false
+
+qa:
+  :enable_cas: true
+
+production:
+  :enable_cas: true
+
+staging:
+  :enable_cas: true
+
+cucumber:
+  <<: *test

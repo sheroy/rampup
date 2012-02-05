@@ -1,0 +1,9 @@
+<%= title "Login"%>
+<%= content_for :login do %>
+	<h4>Login</h4>
+	<%= form_tag ('/user/signin') do%>
+	<%=render :partial => 'partials/user/userform'%>
+	<%end%>
+	
+	<h3>Welcome To Resource Allocation and Manpower Utilization</h3>
+<%end%>
