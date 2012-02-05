@@ -1,0 +1,5 @@
+<%title "Employee Master Data - #{@beach_ball_resource_info.Name}"%>
+<h3><%=@beach_ball_resource_info.Name%></h3>
+<%=render :partial=>'partials/profile/resource_info', :locals=>{:profile=>@profile,:resource => @beach_ball_resource_info,:experiences => @experiences}%>
+<hr/>
+<%=render :partial=>'partials/profile/beach_ball_assignment_info',:locals=>{:assignments=>@beach_ball_resource_info.assignments}%>

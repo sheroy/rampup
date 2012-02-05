@@ -1,0 +1,31 @@
+<% title "Employee Master Data" %>
+<%= render :partial=>'partials/profile/show/dialog_box_content', :layout=>'partials/profile/show/pop_up', :locals=>{:title=>'Employee Resignation', :uid=>0} %>
+<div class="left-area">
+  <% if !(can? :manage, :all) %>
+    <%= render :partial=>'partials/profile/new_joinee_checklist_link', :locals=>{:profile=>@profile}%>
+  <%end%>
+  <%= render :partial=>'partials/profile/show/general_details', :locals=>{:profile=>@profile} %>
+
+  <%= render :partial=>'partials/profile/show/address_details', :locals=>{:profile=>@profile} %>
+  <%= render :partial=>'partials/profile/show/access_card_details', :locals=>{:profile=>@profile} %>
+  <%= render :partial=>'partials/profile/show/qualification_details', :locals=>{:profile=>@profile} %>
+  <%= render :partial=>'partials/profile/show/experience_details', :locals=>{:profile=>@profile} %>
+  <h3>Passport Details:</h3><br/>
+  <%= render :partial=>'partials/passport/passport_information', :locals=>{:profile=>@profile, :passport=>@profile.passport} %>
+  <% if can? :manage, :all %>
+      <%= render :partial=>'partials/profile/show/life_insurance_details', :locals=>{:profile=>@profile} %>
+      <%= render :partial=>'partials/profile/show/medical_insurance_details', :locals=>{:profile=>@profile} %>
+      <%= render :partial=>'partials/profile/show/financial_details', :locals=>{:profile=>@profile} %>
+      <%= link_to 'Edit Profile', edit_profile_path(@profile.id), :class=>'button-link' if @profile.last_day.blank? %>
+      <% if @profile.last_day.blank? %>
+          <%= link_to_function 'Employee Resigns', "invoke_pop_up(0)", :class=>'button-link', :id=>'emp-resign' %>
+      <% else %>
+          <%= link_to 'Employee Rejoins', employee_rejoins_path(@profile), :class=>'button-link', :confirm => "Are you sure you need to rejoin #{@profile.name}?" %>
+      <% end %>
+      <%= link_to 'Back', {:controller=>'profiles', :action=>'index'}, :class=>'button-link' %>
+  <% end %>
+</div>
+<div class="right-area">
+  <%= render :partial=>'partials/picture/show', :locals=>{:profile=>@profile} %>
+</div>
+

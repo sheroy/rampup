@@ -1,0 +1,38 @@
+<%title "Passport"%>
+<h3><%=h display_if_not_nil(@profile.common_name)%></h3>
+<br/>
+<h3>Step 4 of 6 - Passport Information</h3>
+
+<%if @profile.passport.nil?%>
+<%form_for(@passport, :url=>{:controller=>'passport',:action=>'save', :profile_id => @profile.id}) do |f|%>
+<%=f.error_messages%>
+<table>
+	<tr>
+		<td>Passport Number:</td>
+		<td><%=f.text_field :number%></td>
+	</tr>
+	<tr>
+		<td>Date Of Issue:</td>
+		<td><%=f.date_select :date_of_issue,:start_year => Time.now.year-20,
+		:end_year => Time.now.year,:order => [:day,:month,:year],:include_blank=>true%></td>
+	</tr>
+	<tr>
+		<td>Date Of Expiry:</td>
+		<td><%=f.date_select :date_of_expiry,:start_year => Time.now.year,
+		:end_year => Time.now.year+20,:order => [:day,:month,:year],:include_blank=>true%></td>
+	</tr>
+	<tr>
+		<td>Place Of Issue:</td>
+		<td><%=f.text_field :place_of_issue%></td>
+	</tr>	
+</table>
+
+<%=link_to "Previous Step", add_experience_path(@profile.id), :class=>'submit-button-link'%>
+<%=f.submit 'Save Passport Information'%>
+<%=link_to "No Passport Available", {:controller=>:insurance,:action=>'new_life_insurance',
+	:id=>@profile.id}, :class=>'submit-button-link'%>
+<%end%>
+<%else%>
+	<%=render :partial=>'partials/passport/passport_information', :locals=>{:passport => @passport, :profile=>@profile}%>
+	<%=link_to "Edit",edit_passport_path(@profile.id),:class=>'button-link'%><br/><br/><br/>
+<%end%>

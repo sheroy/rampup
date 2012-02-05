@@ -1,0 +1,14 @@
+-<% title "New Employee Master Data" %>
+<div class="left-area">
+  <% form_for :profile, @profile, :url=>{:action=>'create', :id=>@profile.id}, :html => {:id=>'my_id', :id2 =>'creating', :onsubmit=>'unset_element_disabled($("#profile_permanent_state"));'} do |f| %>
+      <%= render :partial => 'partials/profile/profile_form', :locals=>{:f=>f} %>
+      <%= submit_tag "Save As Draft" %>
+      <%= f.submit "Go To Next Step" %>
+      <div style="margin-top: 10px;margin-left: 2px;">
+        <%= link_to 'Cancel', {:controller=>'profiles', :action=>'index'}, :class=>"submit-button-link" %>
+      </div>
+  <% end %>
+</div>
+<div class="right-area">
+  <%= render :partial => 'partials/picture/edit', :locals=>{:profile=>@profile} %>
+</div>

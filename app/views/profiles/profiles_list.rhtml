@@ -1,0 +1,11 @@
+<%title "Results"%>
+<h3><%=@title%></h3><br/>
+<%if @profiles %>
+  <%if @profiles.length > 0 %>
+	<%= render :partial=>'partials/profiles/profile_attributes', :locals => {:profiles => @profiles}%>
+    <%= will_paginate @profiles if params[:search_terms].nil? %><br/>
+    <%=link_to "Export To Excel",{:controller=>'profiles',:action=>'export_search_results',:search_terms=>params[:search_terms]},:class=>'button-link'%>
+<%else%>
+    <h3><span style="color:red">No Records Found</span></h3>
+<%end%>
+<%end%>

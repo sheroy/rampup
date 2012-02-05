@@ -1,0 +1,33 @@
+<% title "New Joinee CheckList" %>
+<br>
+<h2><b>New Joinee Checklist for <%= @profile.common_name %></b></h2> <br/>
+<% form_for :profile, :url => save_new_joinee_checklist_path(@profile.id) do |f| %>
+    <div id="checklist">
+      <% @checklist_groups.each do |group| %>
+          <div class="checklist_group" id=<%= group.description %>>
+            <h3><%= group.description %> </h3>
+            <br> <br/>
+            <% @checklists.select { |x| x.group_id == group.id }.each do |check_item| %>
+                <%= check_box_tag(check_item.id, 'yes', check_item.checked?(@profile.id), :disabled => !(can? :manage, Profile)) %>
+                <p><%= check_item.description %></p>
+                <br/>
+            <% end %>
+          </div>
+      <% end %>
+      <% if can? :manage, :all %>
+          <%= f.submit('Save') %>
+          <%= link_to "Cancel", {:controller => "profile", :action => "edit", :id=>@profile.id}, :class=>"submit-button-link" %>
+      <% else %>
+          <%= link_to "Back", show_profile_path(@profile.id), :class=>"submit-button-link" %>
+      <% end %>
+      <br/>
+      <br/>
+      <br/>
+
+    </div>
+<% end %>
+
+
+
+
+

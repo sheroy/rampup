@@ -1,0 +1,22 @@
+<% title "Finanacial Details" %>
+<h3><%= h display_if_not_nil(@profile.common_name) %></h3><br/>
+<h3>Step 6 of 6 - Financial Information</h3> <br/>
+<% form_for :profile, @profile, :url=>{:action=>'save_financial_details', :id=>@profile.id} do |f| %>
+    <table>
+      <tr>
+        <td>Bank Account No:</td>
+        <td><%= f.text_field :account_no %></td>
+      </tr>
+      <tr>
+        <td>PAN No:<span style="color:red">*</span></td>
+        <td><%= f.text_field :pan_no %></td>
+      </tr>
+      <tr>
+        <td>EPF No: KN/BN/35147/</td>
+        <td><%= f.text_field :epf_no %></td>
+      </tr>
+    </table>
+    <%= link_to "Go To Previous Step", {:controller=>'insurance', :action=>'new_life_insurance', :id=>@profile.id}, :class=>'submit-button-link' %>
+    <%= submit_tag "Save As Draft" %>
+    <%= f.submit "Save and Review" %>
+<% end %>

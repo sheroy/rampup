@@ -1,0 +1,14 @@
+<br/>
+<table>
+	<tr>
+		<%form_tag :action=>'save_last_day', :id=>params[:id] do%>
+		<td>Enter The Date Of Exit:</td>
+		<td>
+			<%=date_select :profile, :last_day, :start_year=>Time.now.year-70, 
+			:end_year => Time.now.year,:include_blank=>true,:order => [:year, :month, :day] %>
+		</td>
+		<td><%=submit_tag 'Save'%></td>
+		<%end%>
+        <td><%=link_to "Cancel",{:controller=>'profile',:action=>'show',:id=>params[:id]},:class=>'submit-button-link'%></td>
+	</tr>
+</table>

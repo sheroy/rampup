@@ -1,0 +1,16 @@
+<%title "Employee Master Data"%>
+<%=render :partial=>'partials/profile/show/dialog_box_content',:layout=>'partials/profile/show/pop_up',:locals=>{:title=>'Employee Resignation',:uid=>0}%>
+<div class="left-area">
+	<%=render :partial=>'partials/profile/show/rm_view_general_details',:locals=>{:profile=>@profile}%>
+	<%=render :partial=>'partials/profile/show/qualification_details', :locals=>{:profile=>@profile}%>
+	<%=render :partial=>'partials/profile/show/experience_details', :locals=>{:profile=>@profile}%>
+	<%=render :partial=>'partials/profile/show/history_layout'%>
+    <h3>Passport Information</h3><br/>
+    <%=render :partial=>'partials/passport/passport_information', :locals=>{:profile=>@profile,:passport=>@profile.passport}%>
+	<h3>Visa Information</h3><br/>
+    <%=render :partial=>'partials/visa/existing_visas'%>
+ 	<a href="javascript:history.go(-1)" class='button-link'>Back to search results </a>
+</div>
+<div class="right-area">
+<%=render :partial=>'partials/picture/show',:locals=>{:profile=>@profile}%>
+</div>

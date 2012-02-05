@@ -1,0 +1,15 @@
+<% title "Edit Employee Master Data" %>
+<div class="left-area">
+  <% form_for :profile, @profile, :url=>update_profile_path(@profile.id), :id => 'my_id' do |f| %>
+      <%= render :partial => 'partials/profile/profile_form', :locals=>{:f=>f} %>
+      <%= render :partial => 'partials/profile/new_joinee_checklist_link', :locals=>{:f=>f} %>
+      <%= submit_tag "Save As Draft" %>
+      <%= f.submit "Go To Next Step" %>
+      <div style="margin-top: 10px;margin-left: 2px;">
+        <%= link_to 'Cancel', {:controller=>'profiles', :action=>'index'}, :class=>"submit-button-link" %>
+      </div>
+  <% end %>
+</div>
+<div class="right-area">
+  <%= render :partial => 'partials/picture/edit', :locals=>{:profile=>@profile} %>
+</div>
