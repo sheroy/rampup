@@ -1,14 +1,13 @@
 class ApplicationController < ActionController::Base
   layout 'master'
   require 'authenticator'
-  print "Here"
   include (AuthenticationConfig[:enable_cas] == true ? CASAuthenticator : LocalAuthenticator)
 
   helper :all
   protect_from_forgery # :secret => 'e7aa2267d9a05e4a7c391946da95b6a2'
 
   def isLoggedIn
-    return !@current_user.nil?
+    !@current_user.nil?
   end
 
   unless Rails.application.config.consider_all_requests_local

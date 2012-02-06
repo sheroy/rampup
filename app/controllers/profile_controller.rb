@@ -80,7 +80,7 @@ class ProfileController < ApplicationController
 
   def save_as_draft
     @profile.valid?
-    if (@profile.errors.on(:employee_id).nil?)
+    if (@profile.errors[:employee_id].nil?)
       @profile.completed = false
       @profile.save(:validate => false)
       flash.now[:notice] = "Profile Temporarily Saved"
@@ -138,12 +138,12 @@ class ProfileController < ApplicationController
         flash.now[:notice] = "Profile Temporarily Saved"
         render :action=>"financial_details",:id => @profile
       else
-        flash[:notice] = "Verify all the details and #{ActionController::Base.helpers.link_to('Click here', complete_profile_path(@profile))} to save as final".html_safe 
+        flash[:notice] = "Verify all the details and #{ActionController::Base.helpers.link_to('Click here', complete_profile_path(@profile.id))} to save as final".html_safe
         redirect_to show_profile_path(params[:id])
       end
     else
       flash.now[:error] = "Some errors prohibited the Financial information from being saved"
-      render :financial_details, :id=>@profile.id
+      render :financial_details
     end
   end
 
@@ -155,7 +155,7 @@ class ProfileController < ApplicationController
    private
   def save_without_validation
     @profile.valid?
-    if (@profile.errors.on(:employee_id).nil?)
+    if (@profile.errors[:employee_id].nil?)
       @profile.completed = false
       @profile.save(:validate => false)
       flash[:notice] = "Profile Temporarily Saved"

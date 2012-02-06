@@ -1,4 +1,6 @@
 require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
+require File.expand_path(File.dirname(__FILE__) + '/../model_factory')
+
 describe ProfileController do
   before(:each) do
     @profile = Profile.new
@@ -6,8 +8,9 @@ describe ProfileController do
     @resource = mock("Resource", :LocationID=>'id', :ResourceID =>'resource ID')
     @assignments = mock("assignments")
     @profile.qualifications << Qualification.new
-    params[:profile]=mock("profile params")
-     @controller.instance_eval {flash.stub!(:sweep) }
+    @controller.params[:profile]=mock("profile params")
+    @controller.instance_eval { flash.stub!(:sweep) }
+    @controller.set_current_user(User.new(:username=>"admin", :password=>"pass", :role=>"admin"))
   end
 
   describe "Passport Information" do
@@ -28,15 +31,17 @@ describe ProfileController do
   end
 
   describe "view" do
+    render_views
     it "should render the profile form" do
       @controller.stub!(:render).with(:template => 'profile/profile_form')
       Title.stub!(:all)
       get :new
+      response.should be_success
     end
   end
 
   describe "show" do
-    integrate_views
+    render_views
 
     it "should raise an exception if the profile does not exist" do
       lambda { get :show, :id => 123 }.should raise_error(ActiveRecord::RecordNotFound)
@@ -74,11 +79,12 @@ describe ProfileController do
       Profile.should_receive(:find_by_id).and_return(@profile)
     end
     it "should get date of exit and save the object" do
-      @profile.should_receive(:save_without_validation).and_return(true)
+      @profile.should_receive(:save).and_return(true)
       get :save_last_day, :id=>@profile.id
-      response.should redirect_to(show_profile_path(params[:id]))
+      response.should redirect_to(show_profile_path(@controller.params[:id]))
       flash[:notice].should == "Last date has been saved successfully"
     end
+
     it "should not save if invalid resignation date is selected" do
       @profile.date_of_joining = DateTime.now
       post :save_last_day, :id => @profile.id, :profile => {:last_day => DateTime.now - 20}
@@ -95,6 +101,7 @@ describe ProfileController do
       @profile.save(:validate => false)
       Profile.should_receive(:find_by_id).and_return(@profile)
       @controller.should_receive(:render).with(:template=>'profile/edit_profile_form')
+      render_views
       post :update, :profile=>profile, :id =>@profile.id, :years=>years, :months=>months
       @profile.years_of_experience.should==51
       flash[:error].should=="Employee ID should be a unique 5 digit number"
@@ -192,7 +199,7 @@ describe ProfileController do
       it "should render the same page if there are some errors while saving the profile" do
         Profile.stub!(:find).with('1').and_return(@profile)
         @profile.should_receive("attributes=").with(@financial_post_params)
-        @profile.should_receive(:save_without_validation).and_return(false)
+        @profile.should_receive(:save).and_return(false)
         @controller.should_receive(:render).with(:financial_details)
         post :save_financial_details, :id=>'1', :profile => @financial_post_params
         flash[:error].should == "Some errors prohibited the Financial information from being saved"
@@ -201,7 +208,7 @@ describe ProfileController do
         @profile.id=1
         Profile.stub!(:find).with('1').and_return(@profile)
         @profile.should_receive("attributes=").with(@financial_post_params)
-        @profile.should_receive(:save_without_validation).and_return(true)
+        @profile.should_receive(:save).and_return(true)
         post :save_financial_details, :id=>'1', :profile => @financial_post_params
         response.should redirect_to(show_profile_path("1"))
         flash[:notice].should == "Verify all the details and <a href=\"/profile/complete/#{@profile.id}\">Click here</a> to save as final"
